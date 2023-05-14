@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 
 
 // Получение пользователя из бд.
-public class Test2 {
+public class TestReadDB {
 
     public static void main(String[] args) {
 

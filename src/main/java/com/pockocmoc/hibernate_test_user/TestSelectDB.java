@@ -1,12 +1,12 @@
 package com.pockocmoc.hibernate_test_user;
 
 import com.pockocmoc.hibernate_test_user.entity.User;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-// Добавление нового пользователя в бд.
-public class Test1 {
+public class TestSelectDB {
 
     public static void main(String[] args) {
 
@@ -17,18 +17,20 @@ public class Test1 {
 
         try {
             Session session = factory.getCurrentSession();
-
-            User user = new User("SashokPushok", "Parol",
-                    "aleksandr@gmail.com", "Sasha", "Nenashev");
             session.beginTransaction();
-            session.save(user);
+
+            List<User> users = session.createQuery("from User "
+                    + "where firstName = 'Sasha'")
+                    .getResultList();
+
+            for (User u : users) {
+                System.out.println(u.getUserName());
+            }
+
             session.getTransaction().commit();
             System.out.println("Done!!!");
-            System.out.println(user);
-
         } finally {
             factory.close();
         }
-
     }
 }
