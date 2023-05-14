@@ -5,8 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-// Получение пользователя из бд.
-public class TestReadDB {
+public class TestUpdateDB {
 
     public static void main(String[] args) {
 
@@ -17,18 +16,14 @@ public class TestReadDB {
 
         try {
             Session session = factory.getCurrentSession();
-
-//            Employee emp = new Employee("Elena", "Petrova", "Sales", 49000);
-//            session.beginTransaction();
-//            session.save(emp);
-//            session.getTransaction().commit();
-//            
-//            int myId = emp.getId();
-            session = factory.getCurrentSession();
             session.beginTransaction();
-            User user = session.get(User.class, 2);
+
+//            Employee emp = session.get(Employee.class, 1);
+//            emp.setSalary(100000 );
+            session.createQuery("update User SET userName = 'Pushok' "
+                    + "where firstName = 'Sasha'").executeUpdate();
+
             session.getTransaction().commit();
-            System.out.println(user);
 
             System.out.println("Done!!!");
 

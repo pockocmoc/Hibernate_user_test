@@ -5,11 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-// Получение пользователя из бд.
-public class TestReadDB {
+public class TestDeleteUserFromDB {
 
     public static void main(String[] args) {
-
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(User.class)
@@ -17,18 +15,14 @@ public class TestReadDB {
 
         try {
             Session session = factory.getCurrentSession();
-
-//            Employee emp = new Employee("Elena", "Petrova", "Sales", 49000);
-//            session.beginTransaction();
-//            session.save(emp);
-//            session.getTransaction().commit();
-//            
-//            int myId = emp.getId();
-            session = factory.getCurrentSession();
             session.beginTransaction();
-            User user = session.get(User.class, 2);
+
+//            Employee emp = session.get(Employee.class, 2);
+//            session.delete(emp);
+            session.createQuery("DELETE FROM User "
+                    + "where id = 3").executeUpdate();
+
             session.getTransaction().commit();
-            System.out.println(user);
 
             System.out.println("Done!!!");
 
