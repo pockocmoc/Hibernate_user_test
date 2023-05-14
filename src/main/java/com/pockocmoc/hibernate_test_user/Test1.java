@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+// Добавление нового пользователя в бд.
 public class Test1 {
 
     public static void main(String[] args) {
